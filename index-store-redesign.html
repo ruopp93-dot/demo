@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Гастробоксы и фуршетные закуски — Великий Новгород</title>
+<meta name="description" content="Интернет-магазин фуршетных закусок и гастробоксов в Великом Новгороде. Выберите набор, добавьте в корзину и оформите заказ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2eb;--surface:#fffefa;--ink:#242820;--muted:#77786e;
+  --accent:#a34d36;--accent-hover:#843c2b;--olive:#657052;--line:#dedbd1;
+  --sans:Arial,Helvetica,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{touch-action:manipulation}
+:focus-visible{outline:3px solid #c58a55;outline-offset:3px}
+.wrap{width:min(1240px,calc(100% - 64px));margin:0 auto}
+.demo{background:#25291f;color:#e9e7df;font-size:12px}
+.demo .wrap{min-height:32px;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 0}
+.demo a{color:#e4b28d;text-decoration:underline;text-underline-offset:3px}
+.top{background:var(--surface);border-bottom:1px solid var(--line);position:relative;z-index:5}
+.top .wrap{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-size:17px;font-weight:700;letter-spacing:-.45px;line-height:1.2;max-width:360px}
+.logo:before{content:"";display:inline-block;width:27px;height:27px;vertical-align:middle;margin-right:11px;background:var(--accent);border-radius:2px}
+.cartbtn{display:flex;align-items:center;gap:12px;background:var(--ink);color:white;border:0;border-radius:3px;padding:12px 17px;font-weight:700;cursor:pointer}
+.cartbtn:hover{background:var(--accent)}
+.cartbtn i{font-style:normal;display:inline-grid;place-items:center;min-width:23px;height:23px;padding:0 6px;border-radius:2px;background:#e8e1d3;color:var(--ink);font-size:12px}
+.intro{display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:54px;padding:56px 0 48px}
+.intro-copy{max-width:590px}
+.eyebrow{display:block;color:var(--accent);font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:18px}
+.intro h1{font-size:clamp(38px,4.5vw,61px);line-height:1.02;letter-spacing:-2.5px;font-weight:800;margin:0 0 20px;max-width:580px}
+.intro p{font-size:17px;color:#66675e;line-height:1.65;margin:0;max-width:500px}
+.hero-photo{height:330px;overflow:hidden;background:#e6e0d3}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-caption{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.catalog-head{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:8px 0 20px;border-bottom:1px solid var(--line)}
+.catalog-head h2{font-size:27px;letter-spacing:-.8px;margin:0;font-weight:750}
+.catalog-head p{font-size:13px;color:var(--muted);margin:4px 0 0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0 22px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid #c9c7bc;background:transparent;border-radius:2px;padding:8px 12px;font-size:13px;cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip[aria-pressed=true]{background:var(--olive);border-color:var(--olive);color:#fff}
+.bar label{display:flex;align-items:center;gap:8px;white-space:nowrap;font-size:12px;color:var(--muted)}
+select{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:9px 28px 9px 10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:0 0 52px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:2px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.ph{aspect-ratio:1.25/1;background:#e8e5dc;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.card:hover .ph img{transform:scale(1.025)}
+.card .in{padding:16px 17px 17px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card small{font-size:11px;color:var(--olive);font-weight:700;text-transform:uppercase;letter-spacing:.7px}
+.card h3{font-size:19px;line-height:1.25;letter-spacing:-.35px;margin:0;font-weight:700;min-height:2.5em}
+.card select{width:100%;margin-top:2px}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:9px}
+.price{font-size:18px;font-weight:800;letter-spacing:-.4px;color:var(--accent);white-space:nowrap}
+.price.free{color:var(--olive)}
+.add{background:var(--accent);color:white;border:0;border-radius:2px;padding:11px 15px;font-size:13px;font-weight:700;cursor:pointer;min-height:42px}
+.add:hover{background:var(--accent-hover)}
+.note{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;margin:0 0 48px;font-size:14px;color:#56584f}
+footer{background:#25291f;color:#e8e7df;padding:34px 0;font-size:13px}
+footer a{color:#e4b28d;text-underline-offset:3px}
+footer p{margin:7px 0}
+.ov{position:fixed;inset:0;background:rgba(20,22,18,.58);z-index:8}
+.ov[hidden],.drawer[hidden]{display:none}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--surface);z-index:9;display:flex;flex-direction:column;box-shadow:-12px 0 35px rgba(0,0,0,.18)}
+.drawer header{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-bottom:1px solid var(--line)}
+.drawer h2{font-size:23px;margin:0;letter-spacing:-.6px}
+.x{background:none;border:0;font-size:29px;line-height:1;cursor:pointer;width:40px;height:40px}
+.body{overflow:auto;padding:15px 20px 25px;flex:1}
+.row{display:grid;grid-template-columns:1fr auto;gap:3px 12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.row b{font-weight:700}
+.row .sub{color:var(--muted);font-size:13px}
+.qty{display:flex;align-items:center;gap:9px;grid-column:1/-1;margin-top:7px}
+.qty button{width:35px;height:35px;border:1px solid var(--line);background:white;border-radius:2px;cursor:pointer;font-size:18px}
+.qty .rm{margin-left:auto;width:auto;border:0;background:none;color:var(--accent);font-size:13px}
+.total{display:flex;justify-content:space-between;font-size:19px;font-weight:800;padding:17px 0}
+form label{display:block;font-weight:700;font-size:13px;margin-top:12px}
+form input,form textarea{width:100%;padding:12px;border:1px solid #d3d0c6;border-radius:2px;background:#fff;margin-top:5px;min-height:44px}
+form textarea{min-height:76px;resize:vertical}
+.send{width:100%;margin-top:17px;background:var(--accent);color:#fff;border:0;border-radius:2px;padding:14px;font-weight:700;cursor:pointer;min-height:48px}
+.send:hover{background:var(--accent-hover)}
+.hint{font-size:12px;color:var(--muted);margin:10px 0 0;line-height:1.5}
+.done textarea{min-height:170px}
+.empty{color:var(--muted);padding:24px 0}
+@media(max-width:900px){
+ .wrap{width:calc(100% - 40px)}
+ .intro{gap:28px;padding:42px 0}
+ .hero-photo{height:280px}
+ .grid{gap:16px}
+}
+@media(max-width:650px){
+ .wrap{width:calc(100% - 28px)}
+ .demo .wrap{justify-content:center;text-align:center;flex-wrap:wrap}
+ .top .wrap{min-height:64px;gap:10px}
+ .logo{font-size:13px;max-width:205px}
+ .logo:before{width:21px;height:21px;margin-right:7px}
+ .cartbtn{padding:9px 11px;font-size:13px;gap:7px}
+ .intro{display:flex;flex-direction:column;align-items:stretch;gap:18px;padding:34px 0 30px}
+ .intro h1{font-size:42px;letter-spacing:-1.7px;margin-bottom:13px}
+ .intro p{font-size:15px}
+ .hero-photo{height:220px;order:2}
+ .hero-caption{margin-top:-10px}
+ .catalog-head{align-items:start;padding-bottom:14px}
+ .catalog-head h2{font-size:23px}
+ .catalog-head p{font-size:12px}
+ .bar{display:block;padding:14px 0 17px}
+ .chips{flex-wrap:nowrap;overflow-x:auto;margin:0 -14px;padding:2px 14px 10px;scrollbar-width:thin}
+ .chip{flex:0 0 auto}
+ .bar label{justify-content:flex-end;margin-top:6px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding-bottom:32px}
+ .ph{aspect-ratio:1/1}
+ .card .in{padding:10px;gap:7px}
+ .card h3{font-size:16px;min-height:2.45em}
+ .card small{font-size:10px}
+ .card select{font-size:11px;padding:8px 4px}
+ .buy{align-items:stretch;flex-direction:column;gap:8px}
+ .price{font-size:16px}
+ .add{width:100%;padding:10px 6px;font-size:12px;min-height:40px}
+ .note{font-size:13px;margin-bottom:32px;padding:14px 0}
+ .drawer{top:auto;left:0;right:0;bottom:0;width:100%;height:min(88dvh,780px);border-radius:10px 10px 0 0}
+ .drawer header{padding:12px 17px}
+ .body{padding:12px 17px calc(20px + env(safe-area-inset-bottom))}
+}
+@media(max-width:360px){
+ .intro h1{font-size:36px}
+ .grid{gap:8px}
+ .card .in{padding:8px}
+ .card h3{font-size:15px}
+ .price{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ДЕМО-ПЛАШКА: замените ссылку на свой контакт или удалите блок -->
+<div class="demo"><div class="wrap"><span>Демо-версия интернет-магазина</span><a href="https://t.me/goydot1">Хотите такой сайт? Напишите</a></div></div>
+
+<div class="top"><div class="wrap">
+  <div class="logo">Фуршетные закуски и гастробоксы · Великий Новгород</div>
+  <button class="cartbtn" id="openCart" type="button">Корзина <i id="cnt">0</i></button>
+</div></div>
+
+<main class="wrap">
+  <section class="intro">
+    <div class="intro-copy">
+      <span class="eyebrow">Фуршеты и гастробоксы · Великий Новгород</span>
+      <h1>Закуски, которые собирают за одним столом</h1>
+      <p>Наборы для семейных праздников, встреч с друзьями и небольших мероприятий. Выберите готовый бокс в каталоге, а детали заказа мы подтвердим в сообщениях.</p>
+    </div>
+    <div>
+      <div class="hero-photo"><img src="img/01.jpg" alt="Ассорти закусок для фуршета"></div>
+      <div class="hero-caption">Свежие закуски для вашего события</div>
+    </div>
+  </section>
+  <section aria-labelledby="catalogTitle">
+    <div class="catalog-head">
+      <div><h2 id="catalogTitle">Каталог наборов</h2><p>Выберите категорию и подходящий вариант</p></div>
+    </div>
+    <div class="bar">
+      <div class="chips" id="chips" role="group" aria-label="Категории"></div>
+      <label>Сортировать
+        <select id="sort"><option value="def">По умолчанию</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option></select>
+      </label>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <div class="note"><b>Минибургеры:</b> бокс на 16&nbsp;шт — 2&nbsp;400&nbsp;₽, на 25&nbsp;шт — 3&nbsp;750&nbsp;₽, поштучно 165&nbsp;₽ при заказе от 10&nbsp;шт. Выбор вариантов есть в карточке товара.</div>
+</main>
+
+<footer><div class="wrap">
+  <p>Даже самый маленький заказ нам важен. Принимаем заказы через сообщество во ВКонтакте и на Авито.</p>
+  <p><a href="https://vk.com/club243188325" target="_blank" rel="noopener">Сообщество ВКонтакте</a> ·
+  <a href="https://www.avito.ru/velikiy_novgorod/predlozheniya_uslug/furshetnye_zakuskigastroboksykeytering_novgorod_8413428033" target="_blank" rel="noopener">Объявление на Авито</a></p>
+  <p style="color:#b7a8bb">Демонстрационная версия. Тексты и цены взяты из публичного сообщества и могут отличаться от актуальных.</p>
+</div></footer>
+
+<div class="ov" id="ov" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dt" hidden>
+  <header><h2 id="dt">Корзина</h2><button class="x" id="closeCart" type="button" aria-label="Закрыть">×</button></header>
+  <div class="body" id="cartBody"></div>
+</aside>
+
+<script>
+// Фото лежат в папке img. Если у товара нет img, показывается значок категории
+const ICON={"Под крепкое":"🥃","Тарталетки":"🥧","На двоих":"🍽️","На компанию":"🎉","Для девушек":"🌸","Бургеры и детям":"🍔","Комбо":"🍱","Другие наборы":"🎁"};
+const P=[
+ {id:1,n:"Под крепкое 2",p:3990,c:"Под крепкое",img:"img/01.jpg"},
+ {id:2,n:"Изысканный",p:6990,c:"На компанию",img:"img/02.jpg"},
+ {id:3,n:"Бургер",c:"Бургеры и детям",img:"img/03.jpg",v:[{l:"16 шт",p:2400},{l:"25 шт",p:3750},{l:"поштучно, от 10 шт",p:165,min:10,u:"шт"}]},
+ {id:4,n:"Застолье",p:14990,c:"На компанию",img:"img/04.jpg"},
+ {id:5,n:"Под крепкое",p:4900,c:"Под крепкое",img:"img/05.jpg"},
+ {id:6,n:"Детский",p:0,c:"Бургеры и детям",img:"img/06.jpg"},
+ {id:7,n:"Тарталетный 2",p:5899,c:"Тарталетки",img:"img/07.jpg"},
+ {id:8,n:"Ужин на двоих 2",p:2599,c:"На двоих",img:"img/08.jpg"},
+ {id:9,n:"Ужин на двоих",p:4499,c:"На двоих",img:"img/09.jpg"},
+ {id:10,n:"Тарталетный",p:3799,c:"Тарталетки",img:"img/10.jpg"},
+ {id:11,n:"Приятный перекус",p:3990,c:"На компанию",img:"img/11.jpg"},
+ {id:12,n:"Девичник",p:4799,c:"Для девушек",img:"img/12.jpg"},
+ {id:13,n:"Брусскет",p:4099,c:"Тарталетки",img:"img/13.jpg"},
+ {id:14,n:"Аппетитный",p:5799,c:"На компанию",img:"img/14.jpg"},
+ {id:15,n:"Женский",p:3999,c:"Для девушек",img:"img/15.jpg"},
+ // TODO: у позиций ниже в меню было обрезано название. Впишите полное в поле t
+ {id:16,t:"Гастробокс «Поси…»",n:"Поси…",p:5099,c:"Другие наборы",img:"img/16.jpg"},
+ {id:17,t:"Гастробокс «При…»",n:"При…",p:4490,c:"Другие наборы",img:"img/17.jpg"},
+ {id:18,t:"Гастробокс комбо…",n:"комбо…",p:6899,c:"Комбо",img:"img/18.jpg"},
+ {id:19,t:"Гастробокс «Насл…»",n:"Насл…",p:3999,c:"Другие наборы",img:"img/19.jpg"},
+ {id:20,t:"Гастробокс «Сытн…»",n:"Сытн…",p:3800,c:"Другие наборы",img:"img/20.jpg"},
+ {id:21,t:"Гастробокс комбо…",n:"комбо…",p:14499,c:"Комбо",img:"img/21.jpg"},
+ {id:22,t:"Гастробокс «Под…»",n:"Под…",p:4200,c:"Другие наборы",img:"img/22.jpg"},
+ {id:23,t:"Гастробокс «Прем…»",n:"Прем…",p:3700,c:"Другие наборы",img:"img/23.jpg"},
+ {id:24,t:"Гастробокс «Мини…»",n:"Мини…",p:4990,c:"Другие наборы",img:"img/24.jpg"}
+];
+const VK="https://vk.com/im?sel=-243188325";
+const nf=new Intl.NumberFormat("ru-RU");
+const rub=v=>nf.format(v).replace(/\s/g,"\u00a0")+"\u00a0₽";
+const $=id=>document.getElementById(id);
+let cat="Все",sort="def",sel={},cart=[];
+try{cart=JSON.parse(localStorage.getItem("cart")||"[]")}catch(e){}
+const save=()=>{try{localStorage.setItem("cart",JSON.stringify(cart))}catch(e){}};
+const prod=id=>P.find(x=>x.id===id);
+const title=pr=>pr.t||"Гастробокс «"+pr.n+"»";
+const priceOf=(pr,vi)=>pr.v?pr.v[vi].p:pr.p;
+const minOf=(pr,vi)=>(pr.v&&pr.v[vi].min)||1;
+const fromPrice=pr=>pr.v?Math.min(...pr.v.map(x=>x.p)):pr.p;
+
+const CATS=["Все",...new Set(P.map(x=>x.c))];
+CATS.forEach(c=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=c;
+ b.setAttribute("aria-pressed",c===cat);
+ b.onclick=()=>{cat=c;[...$("chips").children].forEach(x=>x.setAttribute("aria-pressed",x===b));grid()};
+ $("chips").appendChild(b)});
+$("sort").onchange=e=>{sort=e.target.value;grid()};
+
+function grid(){
+ let items=P.filter(x=>cat==="Все"||x.c===cat);
+ if(sort!=="def")items=[...items].sort((a,b)=>sort==="asc"?fromPrice(a)-fromPrice(b):fromPrice(b)-fromPrice(a));
+ $("grid").innerHTML=items.map(pr=>{
+  const vi=sel[pr.id]||0,pc=priceOf(pr,vi);
+  const media=pr.img?`<img src="${pr.img}" alt="${title(pr)}" loading="lazy">`:`<span aria-hidden="true">${ICON[pr.c]}</span>`;
+  const vs=pr.v?`<select data-v="${pr.id}" aria-label="Вариант">${pr.v.map((o,i)=>`<option value="${i}"${i===vi?" selected":""}>${o.l} — ${rub(o.p)}${o.u?" за "+o.u:""}</option>`).join("")}</select>`:"";
+  return `<article class="card"><div class="ph">${media}</div><div class="in"><small>${pr.c}</small><h3>${title(pr)}</h3>${vs}
+  <div class="buy"><span class="price${pc?"":" free"}">${pc?rub(pc):"бесплатно"}</span><button class="add" data-a="${pr.id}" type="button">В корзину</button></div></div></article>`}).join("");
+}
+$("grid").addEventListener("change",e=>{const id=e.target.dataset.v;if(id){sel[id]=+e.target.value;grid()}});
+$("grid").addEventListener("click",e=>{const id=e.target.dataset.a;if(!id)return;
+ const pr=prod(+id),vi=sel[id]||0;add(pr.id,vi);
+ e.target.textContent="Добавлено";setTimeout(()=>{if(e.target.isConnected)e.target.textContent="В корзину"},900)});
+
+function add(id,vi){const it=cart.find(x=>x.id===id&&x.vi===vi);
+ if(it)it.q++;else cart.push({id,vi,q:minOf(prod(id),vi)});upd()}
+const total=()=>cart.reduce((s,x)=>s+priceOf(prod(x.id),x.vi)*x.q,0);
+function lineName(x){const pr=prod(x.id);return title(pr)+(pr.v?" ("+pr.v[x.vi].l+")":"")}
+function upd(){save();$("cnt").textContent=cart.reduce((s,x)=>s+x.q,0);if(!$("drawer").hidden)cartView()}
+
+function cartView(){
+ if(!cart.length){$("cartBody").innerHTML='<p class="empty">В корзине пока пусто. Выберите набор в каталоге.</p>';return}
+ const rows=cart.map((x,i)=>{const pr=prod(x.id),pc=priceOf(pr,x.vi),u=(pr.v&&pr.v[x.vi].u)||"шт";
+  return `<div class="row"><div><b>${lineName(x)}</b><div class="sub">${pc?rub(pc)+(pr.v&&pr.v[x.vi].u?" за "+u:""):"бесплатно"}</div></div><b>${pc?rub(pc*x.q):"0&nbsp;₽"}</b>
+  <div class="qty"><button type="button" data-m="${i}" aria-label="Меньше">−</button><span>${x.q}</span><button type="button" data-p="${i}" aria-label="Больше">+</button><button class="rm" type="button" data-r="${i}">Удалить</button></div></div>`}).join("");
+ $("cartBody").innerHTML=rows+`<div class="total"><span>Итого</span><span>${rub(total())}</span></div>
+ <form id="f"><label>Имя<input name="name" required autocomplete="name"></label>
+ <label>Телефон<input name="tel" type="tel" required autocomplete="tel" placeholder="+7"></label>
+ <label>Дата и время получения<input name="when" required placeholder="например, 5 декабря, 15:00"></label>
+ <label>Адрес или комментарий<textarea name="note"></textarea></label>
+ <button class="send" type="submit">Отправить заказ во ВКонтакте</button>
+ <p class="hint">Заказ скопируется, и откроется чат с сообществом. Вставьте текст в сообщение и отправьте. Оплату и детали уточнит мастер.</p></form>`;
+ $("f").onsubmit=submit;
+}
+$("cartBody").addEventListener("click",e=>{const d=e.target.dataset;
+ if(d.p!==undefined)cart[+d.p].q++;
+ else if(d.m!==undefined){const x=cart[+d.m];x.q--;if(x.q<minOf(prod(x.id),x.vi))cart.splice(+d.m,1)}
+ else if(d.r!==undefined)cart.splice(+d.r,1);else return;upd()});
+
+function submit(e){e.preventDefault();const f=new FormData(e.target);
+ const t=["Заказ с сайта",...cart.map(x=>{const pc=priceOf(prod(x.id),x.vi);return "• "+lineName(x)+" × "+x.q+" — "+(pc?rub(pc*x.q):"бесплатно")}),
+  "Итого: "+rub(total()),"","Имя: "+f.get("name"),"Телефон: "+f.get("tel"),"Когда: "+f.get("when"),f.get("note")?"Комментарий: "+f.get("note"):""].join("\n").replace(/\u00a0/g," ").trim();
+ try{navigator.clipboard.writeText(t)}catch(x){}
+ $("cartBody").innerHTML=`<div class="done"><h3>Заказ готов к отправке</h3><p>Текст скопирован. Если окно ВКонтакте не открылось, откройте <a href="${VK}" target="_blank" rel="noopener">чат с сообществом</a> и вставьте его в сообщение.</p><textarea readonly style="width:100%" id="ot"></textarea>
+ <button class="send" type="button" id="clr">Очистить корзину</button></div>`;
+ $("ot").value=t;$("ot").onfocus=ev=>ev.target.select();
+ $("clr").onclick=()=>{cart=[];upd();cartView()};
+ window.open(VK,"_blank","noopener");
+}
+
+function open_(){$("drawer").hidden=false;$("ov").hidden=false;cartView();$("closeCart").focus()}
+function close_(){$("drawer").hidden=true;$("ov").hidden=true;$("openCart").focus()}
+$("openCart").onclick=open_;$("closeCart").onclick=close_;$("ov").onclick=close_;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("drawer").hidden)close_()});
+grid();upd();
+</script>
+</body>
+</html>
